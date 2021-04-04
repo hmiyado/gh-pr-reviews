@@ -1,5 +1,5 @@
-
-export const response = [
+// https://docs.github.com/en/rest/reference/pulls#list-pull-requests
+export const listPullRequests = [
   {
     url: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347',
     id: 1,

@@ -1,5 +1,5 @@
 // https://docs.github.com/en/rest/reference/pulls#list-review-comments-on-a-pull-request
-export const listPullRequestReviewComment = [
+export const listPullRequestReviewComments = [
   {
     url: 'https://api.github.com/repos/octocat/Hello-World/pulls/comments/1',
     pull_request_review_id: 42,

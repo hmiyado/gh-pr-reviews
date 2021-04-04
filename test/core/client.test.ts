@@ -3,15 +3,14 @@ import nock = require('nock')
 import {Octokit} from '@octokit/core'
 
 import {Client} from '../../src/core/client'
-import {response} from '../octokit/list-pull-requests'
-import {listPullRequestReviewComment} from '../octokit/list-pull-request-review-comments'
+import {listPullRequests, listPullRequestReviewComments} from '../octokit'
 
 describe('cleint', () => {
   describe('fetchPullRequests', async () => {
     beforeEach(() => {
       nock(/.+/)
       .get('/repos/octocat/Hello-World/pulls')
-      .reply(200, response)
+      .reply(200, listPullRequests)
     })
     afterEach(() => {
       nock.cleanAll()
@@ -34,7 +33,7 @@ describe('cleint', () => {
     beforeEach(() => {
       nock(/.+/)
       .get('/repos/octocat/Hello-World/pulls/42/comments')
-      .reply(200, listPullRequestReviewComment)
+      .reply(200, listPullRequestReviewComments)
     })
     afterEach(() => {
       nock.cleanAll()
