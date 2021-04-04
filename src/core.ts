@@ -1,26 +1,6 @@
 import {Octokit} from '@octokit/core'
 
-interface GitHubUser {
-  name?: string;
-}
-
-interface ReviewComment {
-  user: GitHubUser;
-  url: string;
-}
-
-interface PullRequest {
-    number: number;
-    user: GitHubUser;
-    url: string;
-    comments: ReviewComment[];
-}
-
-interface GitHubActivity {
-    owner: string;
-    repository: string;
-    pullRequests: PullRequest[];
-}
+import {PullRequest, GitHubActivity} from './core/types'
 
 const fetchPullRequests = async (octokit: Octokit, owner: string, repository: string): Promise<PullRequest[]> => {
   const pullsEndpoint = 'GET /repos/{owner}/{repo}/pulls'
