@@ -7,32 +7,34 @@ import {Client} from '../src/core/client'
 describe('core', function () {
   describe('fetchPullRequestReviews', function () {
     it('should return GitHubActivity', async () => {
+      const pullRequest = {
+        number: 1347,
+        url: 'https://github.com/octocat/Hello-World/pull/1347',
+        user: {
+          name: 'octocat',
+        },
+        comments: [],
+      }
+      const review = {
+        user: {
+          name: 'octocat',
+        },
+        url: 'https://api.github.com/repos/octocat/Hello-World/pulls/comments/1',
+      }
       const client = stubInterface<Client>({
         fetchPullRequests: (async () => {
-          return [{
-            number: 1347,
-            url: 'https://github.com/octocat/Hello-World/pull/1347',
-            user: {
-              name: 'octocat',
-            },
-            comments: [],
-          }]
+          return [pullRequest]
+        })(),
+        fetchPullRequestReviewComments: (async () => {
+          return [review]
         })(),
       })
 
       const actual = await fetchPullRequestReviews(client, 'octocat', 'Hello-World')
-      assert.deepStrictEqual(actual, {
-        owner: 'octocat',
-        repository: 'Hello-World',
-        pullRequests: [{
-          number: 1347,
-          url: 'https://github.com/octocat/Hello-World/pull/1347',
-          user: {
-            name: 'octocat',
-          },
-          comments: [],
-        }],
-      })
+      assert.deepStrictEqual(actual, [{
+        pullRequest,
+        reviews: [review],
+      }])
     })
   })
 })
