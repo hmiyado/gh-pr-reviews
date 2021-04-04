@@ -11,7 +11,6 @@ interface PullRequest {
     number: number;
     user: GitHubUser;
     url: string;
-    comments: ReviewComment[];
 }
 
 export {

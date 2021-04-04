@@ -21,7 +21,6 @@ export class Client {
           name: value.user?.login,
         },
         url: value.html_url,
-        comments: [],
       }
     })
   }

@@ -13,7 +13,6 @@ describe('core', function () {
         user: {
           name: 'octocat',
         },
-        comments: [],
       }
       const review = {
         user: {

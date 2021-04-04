@@ -24,7 +24,6 @@ describe('cleint', () => {
         user: {
           name: 'octocat',
         },
-        comments: [],
       }])
     })
   })
@@ -46,7 +45,6 @@ describe('cleint', () => {
         user: {
           name: '',
         },
-        comments: [],
       })
       assert.deepStrictEqual(actual, [{
         url: 'https://api.github.com/repos/octocat/Hello-World/pulls/comments/1',
