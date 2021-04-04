@@ -22,17 +22,13 @@ interface GitHubActivity {
     pullRequests: PullRequest[];
 }
 
-export const fetchPullRequestReviews = async (
-  octokit: Octokit,
-  owner: string,
-  repository: string
-): Promise<GitHubActivity> => {
+const fetchPullRequests = async (octokit: Octokit, owner: string, repository: string): Promise<PullRequest[]> => {
   const pullsEndpoint = 'GET /repos/{owner}/{repo}/pulls'
   const response = await octokit.request(pullsEndpoint, {
     owner: owner,
     repo: repository,
   })
-  const pullRequests: PullRequest[] = response.data.map(value => {
+  return response.data.map(value => {
     return {
       number: value.number,
       user: {
@@ -42,7 +38,14 @@ export const fetchPullRequestReviews = async (
       comments: [],
     }
   })
+}
 
+export const fetchPullRequestReviews = async (
+  octokit: Octokit,
+  owner: string,
+  repository: string
+): Promise<GitHubActivity> => {
+  const pullRequests = await fetchPullRequests(octokit, owner, repository)
   return {
     owner,
     repository,
