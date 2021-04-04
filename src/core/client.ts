@@ -1,5 +1,5 @@
 import {Octokit} from '@octokit/core'
-import {PullRequest} from './types'
+import {PullRequest, ReviewComment} from './types'
 
 export class Client {
   private octokit: Octokit
@@ -22,6 +22,24 @@ export class Client {
         },
         url: value.html_url,
         comments: [],
+      }
+    })
+  }
+
+  async fetchPullRequestReviewComments(owner: string, repository: string, pullRequest: PullRequest): Promise<ReviewComment[]> {
+    const reviewsEndpoint = 'GET /repos/{owner}/{repo}/pulls/{pull_number}/comments'
+    const response = await this.octokit.request(reviewsEndpoint, {
+      owner: owner,
+      repo: repository,
+      pull_number: pullRequest.number,
+    })
+
+    return response.data.map(value => {
+      return {
+        user: {
+          name: value.user?.login,
+        },
+        url: value.url,
       }
     })
   }
