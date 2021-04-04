@@ -1,31 +1,15 @@
 import {Octokit} from '@octokit/core'
 
-import {PullRequest, GitHubActivity} from './core/types'
-
-const fetchPullRequests = async (octokit: Octokit, owner: string, repository: string): Promise<PullRequest[]> => {
-  const pullsEndpoint = 'GET /repos/{owner}/{repo}/pulls'
-  const response = await octokit.request(pullsEndpoint, {
-    owner: owner,
-    repo: repository,
-  })
-  return response.data.map(value => {
-    return {
-      number: value.number,
-      user: {
-        name: value.user?.login,
-      },
-      url: value.html_url,
-      comments: [],
-    }
-  })
-}
+import {GitHubActivity} from './core/types'
+import {Client} from './core/client'
 
 export const fetchPullRequestReviews = async (
   octokit: Octokit,
   owner: string,
   repository: string
 ): Promise<GitHubActivity> => {
-  const pullRequests = await fetchPullRequests(octokit, owner, repository)
+  const client = new Client(octokit)
+  const pullRequests = await client.fetchPullRequests(owner, repository)
   return {
     owner,
     repository,
