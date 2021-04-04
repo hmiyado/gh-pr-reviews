@@ -1,22 +1,26 @@
 import assert = require('assert')
-import nock = require('nock')
-import {Octokit} from '@octokit/core'
+import {stubInterface} from 'ts-sinon'
 
 import {fetchPullRequestReviews} from '../src/core'
-import {response} from './octokit/list-pull-requests'
+import {Client} from '../src/core/client'
 
 describe('core', function () {
   describe('fetchPullRequestReviews', function () {
-    beforeEach(() => {
-      nock(/.+/)
-      .get('/repos/octocat/Hello-World/pulls')
-      .reply(200, response)
-    })
-    afterEach(() => {
-      nock.cleanAll()
-    })
     it('should return GitHubActivity', async () => {
-      const actual = await fetchPullRequestReviews(new Octokit(), 'octocat', 'Hello-World')
+      const client = stubInterface<Client>({
+        fetchPullRequests: (async () => {
+          return [{
+            number: 1347,
+            url: 'https://github.com/octocat/Hello-World/pull/1347',
+            user: {
+              name: 'octocat',
+            },
+            comments: [],
+          }]
+        })(),
+      })
+
+      const actual = await fetchPullRequestReviews(client, 'octocat', 'Hello-World')
       assert.deepStrictEqual(actual, {
         owner: 'octocat',
         repository: 'Hello-World',
