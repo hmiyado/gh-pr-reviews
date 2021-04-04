@@ -9,22 +9,19 @@ describe('core', function () {
   describe('fetchPullRequestReviews', function () {
     beforeEach(() => {
       nock(/.+/)
-      .get('/repos/organization/repository/pulls')
+      .get('/repos/octocat/Hello-World/pulls')
       .reply(200, response)
     })
     afterEach(() => {
       nock.cleanAll()
     })
     it('should return GitHubActivity', async () => {
-      const actual = await fetchPullRequestReviews(new Octokit(), 'organization', 'repository')
+      const actual = await fetchPullRequestReviews(new Octokit(), 'octocat', 'Hello-World')
       assert.deepStrictEqual(actual, {
-        organization: 'organization',
-        repository: 'repository',
-        user: {
-          name: 'sample',
-        },
+        owner: 'octocat',
+        repository: 'Hello-World',
         pullRequests: [{
-          id: 1347,
+          number: 1347,
           url: 'https://github.com/octocat/Hello-World/pull/1347',
           user: {
             name: 'octocat',

@@ -10,32 +10,31 @@ interface ReviewComment {
 }
 
 interface PullRequest {
-    id: number;
+    number: number;
     user: GitHubUser;
     url: string;
     comments: ReviewComment[];
 }
 
 interface GitHubActivity {
-    organization: string;
+    owner: string;
     repository: string;
-    user: GitHubUser;
     pullRequests: PullRequest[];
 }
 
 export const fetchPullRequestReviews = async (
   octokit: Octokit,
-  organization: string,
+  owner: string,
   repository: string
 ): Promise<GitHubActivity> => {
   const pullsEndpoint = 'GET /repos/{owner}/{repo}/pulls'
   const response = await octokit.request(pullsEndpoint, {
-    owner: organization,
+    owner: owner,
     repo: repository,
   })
   const pullRequests: PullRequest[] = response.data.map(value => {
     return {
-      id: value.number,
+      number: value.number,
       user: {
         name: value.user?.login,
       },
@@ -45,11 +44,8 @@ export const fetchPullRequestReviews = async (
   })
 
   return {
-    organization,
+    owner,
     repository,
-    user: {
-      name: 'sample',
-    },
     pullRequests,
   }
 }
