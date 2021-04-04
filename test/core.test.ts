@@ -6,7 +6,7 @@ import {Client} from '../src/core/client'
 
 describe('core', function () {
   describe('fetchPullRequestReviews', function () {
-    it('should return GitHubActivity', async () => {
+    it('should return PullRequestReviews', async () => {
       const pullRequest = {
         number: 1347,
         url: 'https://github.com/octocat/Hello-World/pull/1347',

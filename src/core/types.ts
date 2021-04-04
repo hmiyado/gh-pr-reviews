@@ -14,15 +14,8 @@ interface PullRequest {
     comments: ReviewComment[];
 }
 
-interface GitHubActivity {
-    owner: string;
-    repository: string;
-    pullRequests: PullRequest[];
-}
-
 export {
   GitHubUser,
   ReviewComment,
   PullRequest,
-  GitHubActivity,
 }
