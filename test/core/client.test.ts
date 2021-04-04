@@ -47,7 +47,7 @@ describe('cleint', () => {
         },
       })
       assert.deepStrictEqual(actual, [{
-        url: 'https://api.github.com/repos/octocat/Hello-World/pulls/comments/1',
+        url: 'https://github.com/octocat/Hello-World/pull/1#discussion-diff-1',
         user: {
           name: 'octocat',
         },

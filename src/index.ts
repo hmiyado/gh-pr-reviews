@@ -1,6 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import {Octokit} from '@octokit/core'
-import { env } from 'process'
+import {env} from 'process'
 import {fetchPullRequestReviews} from './core'
 import {Client} from './core/client'
 

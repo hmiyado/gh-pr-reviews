@@ -38,7 +38,7 @@ export class Client {
         user: {
           name: value.user?.login,
         },
-        url: value.url,
+        url: value.html_url,
       }
     })
   }
