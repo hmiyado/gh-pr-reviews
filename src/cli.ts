@@ -4,6 +4,14 @@ import { reorderByUser } from './core/adapter'
 import { Client } from './core/client'
 
 export type CliOptionSort = 'user' | 'pull-request'
+
+export type CliOption = {
+  env: NodeJS.ProcessEnv
+  token: string | undefined
+  owner: string
+  repository: string
+  sort: CliOptionSort
+}
 export class Cli {
   client: Client
 
@@ -13,8 +21,7 @@ export class Cli {
 
   sort: CliOptionSort
 
-  // eslint-disable-next-line max-params
-  constructor(env: NodeJS.ProcessEnv, token: string | undefined, owner: string, repository: string, sort: CliOptionSort) {
+  constructor({ env, token, owner, repository, sort }: CliOption) {
     const octokit = new Octokit({ auth: token || env.GPR_TOKEN })
     this.client = new Client(octokit)
     this.owner = owner

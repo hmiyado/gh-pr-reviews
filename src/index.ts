@@ -36,7 +36,7 @@ class GhPrReviews extends Command {
   async run() {
     const { flags } = this.parse(GhPrReviews)
 
-    const cli = new Cli(env, flags.token, flags.owner, flags.repository, flags.sort as CliOptionSort)
+    const cli = new Cli({ env, token: flags.token, owner: flags.owner, repository: flags.repository, sort: flags.sort as CliOptionSort })
     cli.run()
   }
 }
