@@ -1,5 +1,4 @@
-gh-pr-reviews
-=============
+# gh-pr-reviews
 
 get github pull request reviews for each user
 
@@ -9,11 +8,15 @@ get github pull request reviews for each user
 [![License](https://img.shields.io/npm/l/gh-pr-reviews.svg)](https://github.com/hmiyado/gh-pr-reviews/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g gh-pr-reviews
 $ gpr COMMAND
@@ -25,8 +28,11 @@ USAGE
   $ gpr COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
 
 <!-- commandsstop -->
