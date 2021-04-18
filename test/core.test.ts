@@ -1,8 +1,8 @@
 import assert = require('assert')
-import {stubInterface} from 'ts-sinon'
+import { stubInterface } from 'ts-sinon'
 
-import {fetchPullRequestReviews} from '../src/core'
-import {Client} from '../src/core/client'
+import { fetchPullRequestReviews } from '../src/core'
+import { Client } from '../src/core/client'
 
 describe('core', function () {
   describe('fetchPullRequestReviews', function () {
@@ -30,10 +30,12 @@ describe('core', function () {
       })
 
       const actual = await fetchPullRequestReviews(client, 'octocat', 'Hello-World')
-      assert.deepStrictEqual(actual, [{
-        pullRequest,
-        reviews: [review],
-      }])
+      assert.deepStrictEqual(actual, [
+        {
+          pullRequest,
+          reviews: [review],
+        },
+      ])
     })
   })
 })

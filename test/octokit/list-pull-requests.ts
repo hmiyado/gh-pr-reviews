@@ -295,12 +295,7 @@ export const listPullRequests = [
         default_branch: 'master',
         open_issues_count: 0,
         is_template: true,
-        topics: [
-          'octocat',
-          'atom',
-          'electron',
-          'api',
-        ],
+        topics: ['octocat', 'atom', 'electron', 'api'],
         has_issues: true,
         has_projects: true,
         has_wiki: true,
@@ -442,12 +437,7 @@ export const listPullRequests = [
         default_branch: 'master',
         open_issues_count: 0,
         is_template: true,
-        topics: [
-          'octocat',
-          'atom',
-          'electron',
-          'api',
-        ],
+        topics: ['octocat', 'atom', 'electron', 'api'],
         has_issues: true,
         has_projects: true,
         has_wiki: true,
@@ -516,4 +506,3 @@ export const listPullRequests = [
     draft: false,
   },
 ]
-

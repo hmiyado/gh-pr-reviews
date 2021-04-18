@@ -1,5 +1,5 @@
-import {Octokit} from '@octokit/core'
-import {PullRequest, ReviewComment} from './types'
+import { Octokit } from '@octokit/core'
+import { PullRequest, ReviewComment } from './types'
 
 export class Client {
   private octokit: Octokit
@@ -14,7 +14,7 @@ export class Client {
       owner: owner,
       repo: repository,
     })
-    return response.data.map(value => {
+    return response.data.map((value) => {
       return {
         number: value.number,
         user: {
@@ -33,7 +33,7 @@ export class Client {
       pull_number: pullRequest.number,
     })
 
-    return response.data.map(value => {
+    return response.data.map((value) => {
       return {
         user: {
           name: value.user?.login,
