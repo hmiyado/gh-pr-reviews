@@ -35,7 +35,7 @@ class GhPrReviews extends Command {
     }),
   }
 
-  static args = [{ name: 'file' }]
+  static args = []
 
   async run() {
     const { flags } = this.parse(GhPrReviews)
