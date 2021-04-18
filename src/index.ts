@@ -1,8 +1,6 @@
 import { Command, flags } from '@oclif/command'
-import { Octokit } from '@octokit/core'
 import { env } from 'process'
-import { fetchPullRequestReviews } from './core'
-import { Client } from './core/client'
+import { Cli } from './cli'
 
 class GhPrReviews extends Command {
   static description = 'get pull request review comments from github'
@@ -31,13 +29,8 @@ class GhPrReviews extends Command {
   async run() {
     const { flags } = this.parse(GhPrReviews)
 
-    const token = flags.token || env.GPR_TOKEN
-
-    const octokit = new Octokit({ auth: token })
-    const client = new Client(octokit)
-    const pullRequestReviews = await fetchPullRequestReviews(client, flags.owner, flags.repository)
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(pullRequestReviews))
+    const cli = new Cli(env, flags.token, flags.owner, flags.repository)
+    cli.run()
   }
 }
 
