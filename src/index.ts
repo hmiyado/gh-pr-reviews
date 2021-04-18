@@ -29,6 +29,10 @@ class GhPrReviews extends Command {
       default: 'user',
       description: "sort output by 'user' or 'pull-request'. use 'user' by default",
     }),
+    baseUrl: flags.string({
+      char: 'b',
+      description: 'api base url. use https://api.github.com by default',
+    }),
   }
 
   static args = [{ name: 'file' }]
@@ -36,7 +40,7 @@ class GhPrReviews extends Command {
   async run() {
     const { flags } = this.parse(GhPrReviews)
 
-    const cli = new Cli({ env, token: flags.token, owner: flags.owner, repository: flags.repository, sort: flags.sort as CliOptionSort })
+    const cli = new Cli({ env, baseUrl: flags.baseUrl, token: flags.token, owner: flags.owner, repository: flags.repository, sort: flags.sort as CliOptionSort })
     cli.run()
   }
 }

@@ -7,6 +7,7 @@ export type CliOptionSort = 'user' | 'pull-request'
 
 export type CliOption = {
   env: NodeJS.ProcessEnv
+  baseUrl: string | undefined
   token: string | undefined
   owner: string
   repository: string
@@ -21,8 +22,8 @@ export class Cli {
 
   sort: CliOptionSort
 
-  constructor({ env, token, owner, repository, sort }: CliOption) {
-    const octokit = new Octokit({ auth: token || env.GPR_TOKEN })
+  constructor({ env, baseUrl, token, owner, repository, sort }: CliOption) {
+    const octokit = new Octokit({ auth: token || env.GPR_TOKEN, baseUrl: baseUrl || 'https://api.github.com' })
     this.client = new Client(octokit)
     this.owner = owner
     this.repository = repository
