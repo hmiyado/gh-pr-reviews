@@ -1,7 +1,7 @@
 {
   "name": "gh-pr-reviews",
   "description": "get github pull request reviews for each user",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "miyado @hmiyado",
   "bin": {
     "gpr": "./bin/run"
