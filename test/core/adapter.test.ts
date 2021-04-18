@@ -1,12 +1,12 @@
 import assert = require('assert')
 
-import { reorderByUser } from '../../src/core/adapter'
+import { sortByUser } from '../../src/core/adapter'
 import { eslintPullRequests } from '../sample/eslint-pull-requests'
 
 describe('adapter', () => {
-  describe('reorderByUser', async () => {
+  describe('sortByUser', async () => {
     it('should return UserPullRequests[]', async () => {
-      const actual = reorderByUser(eslintPullRequests)
+      const actual = sortByUser(eslintPullRequests)
       assert.deepStrictEqual(actual, [
         { user: { name: 'arminyahya' }, pullRequests: [{ pullRequest: { number: 14333, user: { name: 'arminyahya' }, url: 'https://github.com/eslint/eslint/pull/14333' }, reviews: [] }] },
         { user: { name: 'Nate-Wilkins' }, pullRequests: [{ pullRequest: { number: 14332, user: { name: 'Nate-Wilkins' }, url: 'https://github.com/eslint/eslint/pull/14332' }, reviews: [] }] },

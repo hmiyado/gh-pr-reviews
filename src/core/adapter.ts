@@ -5,7 +5,7 @@ export interface UserPullRequests {
   pullRequests: { pullRequest: PullRequest; reviews: ReviewComment[] }[]
 }
 
-export const reorderByUser = (
+export const sortByUser = (
   source: {
     pullRequest: PullRequest
     reviews: ReviewComment[]

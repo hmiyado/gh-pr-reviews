@@ -1,6 +1,6 @@
 import { Octokit } from '@octokit/core'
 import { fetchPullRequestReviews } from './core'
-import { reorderByUser } from './core/adapter'
+import { sortByUser } from './core/adapter'
 import { Client } from './core/client'
 
 export type CliOptionSort = 'user' | 'pull-request'
@@ -35,7 +35,7 @@ export class Cli {
     switch (this.sort) {
       case 'user':
         {
-          const userPullRequests = reorderByUser(pullRequestReviews)
+          const userPullRequests = sortByUser(pullRequestReviews)
           // eslint-disable-next-line no-console
           console.log(JSON.stringify(userPullRequests))
         }
